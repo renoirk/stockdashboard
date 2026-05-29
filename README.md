@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stock Dashboard
 
-## Getting Started
+Supabase 기반 주식 포트폴리오 관리 앱 (Next.js + Tailwind CSS)
 
-First, run the development server:
+## 주요 기능
+
+- 보유 종목 목록 조회 (종목코드 · 종목명 · 수량 · 매수평균가 · 매수금액 · 메모)
+- 종목 추가 / 수정 / 삭제
+- 총 매수금액 자동 계산
+- 다크 테마 UI
+
+## 기술 스택
+
+- **Next.js 15** (App Router)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Supabase** (PostgreSQL)
+
+---
+
+## 로컬 실행 방법
+
+### 1. 저장소 클론
+
+```bash
+git clone https://github.com/renoirk/stockdashboard.git
+cd stockdashboard
+npm install
+```
+
+### 2. 환경변수 설정
+
+프로젝트 루트에 `.env.local` 파일을 생성하고 아래 내용을 입력합니다.
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+> Supabase 대시보드 → Project Settings → API 에서 확인할 수 있습니다.
+
+### 3. Supabase 테이블 생성
+
+Supabase 대시보드 → SQL Editor에서 `supabase/schema.sql` 내용을 실행합니다.
+
+```sql
+-- supabase/schema.sql 내용을 복사해 SQL Editor에 붙여넣기 후 실행
+```
+
+### 4. 개발 서버 실행
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000) 접속
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 환경변수 목록
 
-## Learn More
+| 변수명 | 설명 |
+|--------|------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase 프로젝트 URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase 익명(anon) 키 |
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> `.env.local` 파일은 절대 git에 커밋하지 마세요. `.gitignore`에 이미 포함되어 있습니다.
