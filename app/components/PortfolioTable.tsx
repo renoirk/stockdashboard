@@ -1,6 +1,7 @@
 'use client'
 
 import type { PortfolioItem } from '@/types/database'
+import { formatKST } from '@/lib/formatDate'
 
 interface Props {
   items: PortfolioItem[]
@@ -49,6 +50,7 @@ export default function PortfolioTable({ items, onEdit, onDelete }: Props) {
               <th className="px-4 py-3 text-right">매수평균가</th>
               <th className="px-4 py-3 text-right">매수금액</th>
               <th className="px-4 py-3 text-left">메모</th>
+              <th className="px-4 py-3 text-left">등록일 (KST)</th>
               <th className="px-4 py-3 text-center">관리</th>
             </tr>
           </thead>
@@ -70,6 +72,7 @@ export default function PortfolioTable({ items, onEdit, onDelete }: Props) {
                   ₩{formatNumber(Math.round(item.quantity * item.avg_price))}
                 </td>
                 <td className="px-4 py-3 text-gray-400 max-w-[180px] truncate">{item.notes ?? '—'}</td>
+                <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">{formatKST(item.created_at)}</td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-center gap-2">
                     <button
